@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode - "Factory Floor" */
+    --background: 40 20% 92%;
+    /* Concrete White */
+    --foreground: 20 10% 10%;
+    /* Oil Black */
+
+    --card: 0 0% 96%;
+    --card-foreground: 20 10% 10%;
+
+    --popover: 0 0% 96%;
+    --popover-foreground: 20 10% 10%;
+
+    --primary: 25 100% 50%;
+    /* Safety Orange */
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 85%;
+    /* Steel Grey */
+    --secondary-foreground: 20 10% 10%;
+
+    --muted: 0 0% 85%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 15 100% 50%;
+    /* Warning Red */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    /* Heavy Borders */
+    --input: 0 0% 80%;
+    --ring: 25 100% 50%;
+
+    --radius: 0.5rem;
+    /* INDUSTRIAL STANDARD: NO ROUNDED CORNERS */
+  }
+
+  .dark {
+    /* Dark Mode - "The Foundry" */
+    --background: 20 10% 8%;
+    /* Deep Smoky Black */
+    --foreground: 30 20% 90%;
+    /* Warm White */
+
+    --card: 20 10% 12%;
+    /* Dark Metal */
+    --card-foreground: 30 20% 90%;
+
+    --popover: 20 10% 12%;
+    --popover-foreground: 30 20% 90%;
+
+    --primary: 30 100% 50%;
+    /* Molten Orange */
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 20 5% 20%;
+    /* Cold Steel */
+    --secondary-foreground: 30 20% 90%;
+
+    --muted: 20 5% 20%;
+    --muted-foreground: 30 10% 60%;
+
+    --accent: 10 100% 50%;
+    /* Furnace Red */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 30% 25%;
+    /* Rusted Metal Edge */
+    --input: 20 20% 20%;
+    --ring: 30 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased min-h-screen selection:bg-primary selection:text-black;
+  }
+}
+
+@layer components {
+
+  /* Industrial Panel */
+  .industrial-panel {
+    @apply bg-card border-2 border-border relative overflow-hidden;
+    box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Hazard Stripes */
+  .bg-hazard {
+    background-image: repeating-linear-gradient(45deg,
+        #000,
+        #000 10px,
+        #FFD700 10px,
+        #FFD700 20px);
+  }
+
+  .dark .bg-hazard {
+    background-image: repeating-linear-gradient(45deg,
+        #1a1a1a,
+        #1a1a1a 10px,
+        #b35900 10px,
+        #b35900 20px);
+  }
+
+  /* Grid Background */
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+
+  /* Magma Text Gradient */
+  .text-magma {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 font-black;
+    filter: drop-shadow(0 0 15px rgba(255, 100, 0, 0.5));
+  }
+
+  /* Screws for corners */
+  .screw {
+    @apply absolute w-2 h-2 rounded-full border border-white/20 bg-neutral-800 flex items-center justify-center;
+  }
+
+  .screw::after {
+    content: '';
+    @apply w-1.5 h-px bg-white/30 rotate-45;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.animate-scanline {
+  animation: scanline 4s linear infinite;
+}
